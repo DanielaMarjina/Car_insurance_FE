@@ -20,6 +20,7 @@ import type { FieldChangeHandler } from './types';
 
 interface CarDetailsFormProps {
   categoryFieldOptions: SelectOption[];
+  ownerOptions:SelectOption[];
   errors: CarFormErrors;
   formValues: CarFormValues;
   isCreatingCar: boolean;
@@ -36,6 +37,7 @@ interface CarDetailsFormProps {
  */
 export const CarDetailsForm = ({
   categoryFieldOptions,
+  ownerOptions,
   errors,
   formValues,
   isCreatingCar,
@@ -51,16 +53,16 @@ export const CarDetailsForm = ({
     onSubmit={onSubmit}
     noValidate
   >
-    <Input
-      name="owner_id"
-      label="Owner ID"
-      value={formValues.owner_id}
-      placeholder={CAR_FORM_PLACEHOLDERS.owner_id}
-      disabled
-      required
-      error={errors.owner_id}
-      onChange={(value) => onFieldChange('owner_id', value)}
-    />
+    <Dropdown
+  name="owner_id"
+  label="Owner"
+  value={formValues.owner_id}
+  options={ownerOptions}
+  required
+  disabled={isSubmissionInProgress}
+  error={errors.owner_id}
+  onChange={(value) => onFieldChange("owner_id", value)}
+/>
 
     <Input
       name="vin"

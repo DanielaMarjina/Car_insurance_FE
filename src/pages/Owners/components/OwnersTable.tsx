@@ -57,7 +57,7 @@ export const OwnersTable = ({
           onOwnerCarsView(owner);
         }}
       >
-        View cars
+        View cars 
       </Button>
     ),
   }));

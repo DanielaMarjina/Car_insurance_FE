@@ -49,6 +49,8 @@ import {
   getHistoryTableRows,
   getSaveCarPayload,
 } from './utils';
+import { getOwners } from '../../api/owners/getOwners';
+
 
 /**
  * Coordinates car creation and car detail workflows.
@@ -88,6 +90,7 @@ export const CarDetails = () => {
   const [categoryOptions, setCategoryOptions] = useState<
     SelectOption[]
   >([EMPTY_CATEGORY_OPTION]);
+  const [ownerOptions, setOwnerOptions] = useState<SelectOption[]>([]);
   const [isLoadingCategories, setIsLoadingCategories] =
     useState(!isViewMode);
   const [isLoadingData, setIsLoadingData] = useState(isViewMode);
@@ -178,6 +181,43 @@ export const CarDetails = () => {
       isCurrentRequest = false;
     };
   }, [isViewMode]);
+
+  useEffect(() => {
+  if (isViewMode) {
+    return;
+  }
+
+  let isCurrentRequest = true;
+
+  const fetchOwners = async () => {
+    try {
+      const response = await getOwners();
+
+      if (!isCurrentRequest) {
+        return;
+      }
+
+      setOwnerOptions(
+  response.items.map((owner) => ({
+    value: owner.id,
+    label: owner.name,
+  }))
+);
+    } catch (error) {
+      console.error(error);
+
+      if (isCurrentRequest) {
+        setOwnerOptions([]);
+      }
+    }
+  };
+
+  fetchOwners();
+
+  return () => {
+    isCurrentRequest = false;
+  };
+}, [isViewMode]);
 
   useEffect(() => {
     if (!isViewMode || !carId) {
@@ -561,6 +601,8 @@ export const CarDetails = () => {
           ? 'history-modal'
           : 'car-details-modal';
 
+          
+
   return (
     <div data-testid="car-details-page">
       <Header title={isViewMode ? 'View Car' : 'Add Car'} />
@@ -582,6 +624,7 @@ export const CarDetails = () => {
 
           <CarDetailsForm
             formValues={formValues}
+            ownerOptions={ownerOptions}
             errors={errors}
             categoryFieldOptions={categoryFieldOptions}
             isViewMode={isViewMode}
