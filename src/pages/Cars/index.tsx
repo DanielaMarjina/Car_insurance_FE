@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import type { Car } from '../../api/cars/types';
 import { Header } from '../../components/Header';
 import { ROUTES } from '../../constants/routes';
-
+import { Button } from '../../components/Button';
 import { CarsTable } from './components/CarsTable';
 import { useCarsData } from './hooks/useCarsData';
 import { Wrapper } from './styles';
@@ -35,9 +35,16 @@ export const Cars = () => {
 
   return (
     <div data-testid="cars-page">
-      <Wrapper>
-        <Header title="Cars" />
-      </Wrapper>
+        <Wrapper>
+            <Header title="Cars" />
+            <Button
+              type="button"
+              data-testid="add-car-button"
+              onClick={() => navigate(ROUTES.ADD_CAR)}
+            >
+              Add Car
+            </Button>
+          </Wrapper>
 
       <CarsTable
         cars={cars}
@@ -53,7 +60,7 @@ export const Cars = () => {
         onPaginationChange={handlePaginationChange}
         onRetry={retryCarsRequest}
         onViewCar={viewCar}
-      />
+      /> 
     </div>
   );
 };

@@ -1,7 +1,9 @@
 export const BASE_URL =
   'http://ec2-63-178-240-141.eu-central-1.compute.amazonaws.com/api';
 
-const API_BASE_URL = import.meta.env?.DEV ? '/api' : BASE_URL;
+const API_BASE_URL = import.meta.env.DEV
+  ? import.meta.env.VITE_API_URL
+  : BASE_URL;
 
 export const API_ENDPOINTS = {
   DRIVER_CATEGORIES: `${API_BASE_URL}/licenses`,
