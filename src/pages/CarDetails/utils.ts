@@ -75,6 +75,7 @@ export const getCategoryFieldOptions = (
  * Maps a loaded car response into editable form values.
  */
 export const getCarFormValues = (car: Car): CarFormValues => ({
+  owner_id: car.owner.id,
   vin: car.vin,
   make: car.make ?? '',
   model: car.model ?? '',
@@ -82,7 +83,6 @@ export const getCarFormValues = (car: Car): CarFormValues => ({
   power: String(car.power),
   cc: String(car.cc),
   category: car.category ?? '',
-  owner_id: car.owner.id,
 });
 
 /**
