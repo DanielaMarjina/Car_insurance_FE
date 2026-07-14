@@ -53,6 +53,16 @@ export const CarDetailsForm = ({
     onSubmit={onSubmit}
     noValidate
   >
+    {isViewMode ? (
+      <Input
+        name="owner_id"
+        label="Owner"
+        value={formValues.owner_id}
+        disabled
+        error={errors.owner_id}
+        onChange={(value) => onFieldChange('owner_id', value)}
+      />
+    ) : (
     <Dropdown
   name="owner_id"
   label="Owner"
@@ -62,7 +72,7 @@ export const CarDetailsForm = ({
   disabled={isSubmissionInProgress}
   error={errors.owner_id}
   onChange={(value) => onFieldChange("owner_id", value)}
-/>
+/>)}
 
     <Input
       name="vin"
