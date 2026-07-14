@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 interface StyledButtonProps {
-  $variant: 'primary' | 'secondary';
+  $variant: 'primary' | 'secondary' | 'danger';
   $size: 'default' | 'icon';
 }
 
@@ -17,31 +17,56 @@ export const StyledButton = styled.button<StyledButtonProps>`
   cursor: pointer;
   font-size: 14px;
 
-  border: ${({ $variant, theme }) =>
-    $variant === 'primary'
-      ? `1px solid ${theme.colors.accent[500]}`
-      : `1px solid ${theme.colors.border.default}`};
+  border: ${({ $variant, theme }) => {
+  switch ($variant) {
+    case 'primary':
+      return `1px solid ${theme.colors.accent[500]}`;
+    case 'danger':
+      return '1px solid #dc2626';
+    default:
+      return `1px solid ${theme.colors.border.default}`;
+  }
+}};
 
-  background-color: ${({ $variant, theme }) =>
-    $variant === 'primary'
-      ? theme.colors.accent[500]
-      : theme.colors.background.card};
+  background-color: ${({ $variant, theme }) => {
+  switch ($variant) {
+    case 'primary':
+      return theme.colors.accent[500];
+    case 'danger':
+      return '#dc2626';
+    default:
+      return theme.colors.background.card;
+  }
+}};
 
   color: ${({ $variant, theme }) =>
-    $variant === 'primary'
-      ? theme.colors.text.inverse
-      : theme.colors.text.primary};
+  $variant === 'primary' || $variant === 'danger'
+    ? theme.colors.text.inverse
+    : theme.colors.text.primary};
 
   &:not(:disabled):hover {
-    background-color: ${({ $variant, theme }) =>
-      $variant === 'primary'
-        ? theme.colors.accent[600]
-        : theme.colors.primary[50]};
-    border-color: ${({ $variant, theme }) =>
-      $variant === 'primary'
-        ? theme.colors.accent[600]
-        : theme.colors.border.strong};
-  }
+  background-color: ${({ $variant, theme }) => {
+    switch ($variant) {
+      case 'primary':
+        return theme.colors.accent[600];
+      case 'danger':
+        return '#b91c1c';
+      default:
+        return theme.colors.primary[50];
+    }
+  }};
+
+  border-color: ${({ $variant, theme }) => {
+    switch ($variant) {
+      case 'primary':
+        return theme.colors.accent[600];
+      case 'danger':
+        return '#b91c1c';
+      default:
+        return theme.colors.border.strong;
+    }
+  }};
+}
 
   &:focus-visible {
     outline: 2px solid ${({ theme }) => theme.colors.border.strong};

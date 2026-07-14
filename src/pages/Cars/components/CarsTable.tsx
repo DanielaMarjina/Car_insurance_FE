@@ -3,6 +3,7 @@ import { Button } from '../../../components/Button';
 import { Table } from '../../../components/Table';
 import type { TablePaginationState } from '../../../components/Table/types';
 import type { SelectOption } from '../../../types/common';
+import styled from 'styled-components';
 
 import {
   CAR_PAGE_SIZE_OPTIONS,
@@ -30,11 +31,18 @@ interface CarsTableProps {
   onPaginationChange: (pagination: TablePaginationState) => void;
   onRetry: () => void;
   onViewCar: (car: Car) => void;
+  onDeleteCar: (car: Car) => void;
 }
 
 /**
  * Renders the Cars table with page-specific columns, filters, and actions.
  */
+
+const Actions = styled.div`
+  display: flex;
+  gap: 8px;
+`;
+
 export const CarsTable = ({
   cars,
   categoryOptions,
@@ -45,6 +53,7 @@ export const CarsTable = ({
   makeOptions,
   modelOptions,
   pagination,
+  onDeleteCar,
   onFilterChange,
   onPaginationChange,
   onRetry,
@@ -53,19 +62,34 @@ export const CarsTable = ({
   const tableData: CarsTableRow[] = cars.map((car) => ({
     ...car,
     ownerName: car.owner.name,
+    
     actions: (
-      <Button
-        type="button"
-        variant="secondary"
-        data-testid={`view-car-${car.id}`}
-        onClick={(event) => {
-          event.stopPropagation();
-          onViewCar(car);
-        }}
-      >
-        View
-      </Button>
-    ),
+  <Actions>
+    <Button
+      type="button"
+      variant="secondary"
+      data-testid={`view-car-${car.id}`}
+      onClick={(event) => {
+        event.stopPropagation();
+        onViewCar(car);
+      }}
+    >
+      View
+    </Button>
+
+    <Button
+      type="button"
+      variant="danger"
+      data-testid={`delete-car-${car.id}`}
+      onClick={(event) => {
+        event.stopPropagation();
+        onDeleteCar(car);
+      }}
+    >
+      Delete
+    </Button>
+  </Actions>
+),
   }));
 
   return (
