@@ -1,4 +1,5 @@
 import type { SummaryCardProps } from "./SummaryCard.types";
+import { Link } from "react-router-dom";
 
 import {
   Card,
@@ -11,6 +12,7 @@ import {
   Value,
   IconWrapper,
   Footer,
+  TextContainer
 } from "./SummaryCard.styles";
 
 export const SummaryCard = ({
@@ -23,9 +25,11 @@ export const SummaryCard = ({
   return (
     <Card>
       <Header>
-        <Title>{title}</Title>
+        <TextContainer>
+          <Title>{title}</Title>
 
-        {subtitle && <Subtitle>{subtitle}</Subtitle>}
+          {subtitle && <Subtitle>{subtitle}</Subtitle>}
+        </TextContainer>
 
         {icon && <IconWrapper>{icon}</IconWrapper>}
       </Header>
@@ -40,9 +44,10 @@ export const SummaryCard = ({
       </List>
 
       {linkLabel && (
-    <Footer>
-      {linkLabel} →
-    </Footer>)}
+        <Footer as={Link} to={title === "Cars by Category" ? "/cars" : "/"}>
+          {linkLabel} →
+        </Footer>
+      )}
     </Card>
   );
 };

@@ -7,6 +7,13 @@ import {
   Title,
 } from "./Dashboard.styles";
 
+import {
+  Users,
+  Car,
+  ShieldCheck,
+  ShieldX,
+} from "lucide-react";
+
 import { useDashboard } from "./hooks/useDashboard";
 
 const Dashboard = () => {
@@ -26,19 +33,35 @@ const Dashboard = () => {
         <StatisticCard
           title="Total Owners"
           value={ownersCount}
-          icon={undefined}
+          icon={<Users size={28} />}
         />
 
-        <StatisticCard title="Total Cars" value={carsCount} icon={undefined} />
+        <StatisticCard
+          title="Total Cars"
+          value={carsCount}
+          icon={<Car size={28} />}
+        />
 
-        <StatisticCard title="Insured Cars" value="--" icon={undefined} />
+        <StatisticCard
+          title="Insured Cars"
+          value="5"
+          icon={<ShieldCheck size={28} />}
+        />
 
-        <StatisticCard title="Uninsured Cars" value="--" icon={undefined} />
+        <StatisticCard
+          title="Uninsured Cars"
+          value="2"
+          icon={<ShieldX size={28} />}
+        />
       </StatisticsGrid>
       <></>
       <SummaryGrid>
         <SummaryCard
           title="Cars by Category"
+          subtitle="Number of cars"
+          icon={<Car size={26} />}
+          linkLabel="View all cars"
+          linkTo="/cars"
           items={[
             {
               label: "EURO3: ",
@@ -69,6 +92,10 @@ const Dashboard = () => {
 
         <SummaryCard
           title="Owners by Driver's Licence Category"
+          subtitle="Number of owners"
+          icon={<Users size={26} />}
+          linkLabel="View all owners"
+          linkTo="/"
           items={[
             {
               label: "A: ",

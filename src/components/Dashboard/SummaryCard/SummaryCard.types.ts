@@ -7,8 +7,12 @@ export interface SummaryItem {
 
 export interface SummaryCardProps {
   title: string;
-  subtitle?: string;
+  subtitle:string;
   icon?: ReactNode;
-  items: SummaryItem[];
+  items: {
+    label: string;
+    value: string | number;
+  }[];
   linkLabel?: string;
+  linkTo?: string;
 }

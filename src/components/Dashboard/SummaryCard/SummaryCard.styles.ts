@@ -49,23 +49,49 @@ export const Value = styled.span`
 `;
 
 export const IconWrapper = styled.div`
-  color: #4F46E5;
+  width: 42px;
+  height: 42px;
+
+  border-radius: 12px;
+
+  background: #eef2ff;
+
+  color: #4f46e5;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
 `;
 
 export const Footer = styled.div`
   margin-top: 20px;
   padding-top: 16px;
-  border-top: 1px solid #eee;
+
+  border-top: 1px solid #e5e7eb;
 
   text-align: center;
 
   color: #2563eb;
+
   font-weight: 600;
 
   cursor: pointer;
+
+  transition: 0.2s;
+
+  &:hover {
+    color: #1d4ed8;
+  }
 `;
+
 export const Subtitle = styled.p`
   margin: 4px 0 0;
   color: #6b7280;
   font-size: 14px;
+`;
+
+export const TextContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
 `;
