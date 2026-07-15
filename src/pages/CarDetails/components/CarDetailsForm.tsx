@@ -21,6 +21,7 @@ import type { FieldChangeHandler } from './types';
 interface CarDetailsFormProps {
   categoryFieldOptions: SelectOption[];
   ownerOptions:SelectOption[];
+  ownerId?: string;
   errors: CarFormErrors;
   formValues: CarFormValues;
   isCreatingCar: boolean;
@@ -44,6 +45,7 @@ export const CarDetailsForm = ({
   isLoadingCategories,
   isSubmissionInProgress,
   isViewMode,
+  ownerId,
   onBack,
   onFieldChange,
   onSubmit,
@@ -53,7 +55,7 @@ export const CarDetailsForm = ({
     onSubmit={onSubmit}
     noValidate
   >
-    {isViewMode ? (
+    {isViewMode || ownerId? (
       <Input
         name="owner_id"
         label="Owner"
