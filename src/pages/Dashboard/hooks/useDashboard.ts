@@ -18,6 +18,15 @@ export const useDashboard = () => {
     ELECTRIC: 0,
   });
 
+  const [ownersByLicence, setOwnersByLicence] = useState({
+    A: 0,
+    B: 0,
+    C: 0,
+    D: 0,
+    E: 0,
+    NONE: 0,
+  });
+
   useEffect(() => {
     const loadDashboard = async () => {
       try {
@@ -43,6 +52,25 @@ export const useDashboard = () => {
 
         setCarsByCategory(categories);
 
+        const licences = {
+          A: 0,
+          B: 0,
+          C: 0,
+          D: 0,
+          E: 0,
+          NONE: 0,
+        };
+
+        ownersResponse.items.forEach((owner) => {
+          if (owner.driver_license_cat) {
+            licences[owner.driver_license_cat]++;
+          } else {
+            licences.NONE++;
+          }
+        });
+
+        setOwnersByLicence(licences);
+
         setOwnersCount(ownersResponse.count);
         setCarsCount(carsResponse.count);
       } finally {
@@ -58,5 +86,6 @@ export const useDashboard = () => {
     ownersCount,
     carsCount,
     carsByCategory,
+    ownersByLicence,
   };
 };

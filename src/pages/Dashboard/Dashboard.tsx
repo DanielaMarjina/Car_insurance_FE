@@ -3,7 +3,7 @@ import { StatisticCard, SummaryCard } from "../../components/Dashboard";
 import { useDashboard } from "./hooks/useDashboard";
 
 const Dashboard = () => {
-  const { loading, ownersCount, carsCount, carsByCategory } = useDashboard();
+  const { loading, ownersCount, carsCount, carsByCategory, ownersByLicence } = useDashboard();
 
   if (loading) {
     return <p>Loading...</p>;
@@ -47,6 +47,36 @@ const Dashboard = () => {
           {
             label: "Electric: ",
             value: carsByCategory.ELECTRIC,
+          },
+        ]}
+      />
+
+      <SummaryCard
+        title="Owners by Driver's Licence Category"
+        items={[
+          {
+            label: "A: ",
+            value: ownersByLicence.A,
+          },
+          {
+            label: "B: ",
+            value: ownersByLicence.B,
+          },
+          {
+            label: "C: ",
+            value: ownersByLicence.C,
+          },
+          {
+            label: "D: ",
+            value: ownersByLicence.D,
+          },
+          {
+            label: "E: ",
+            value: ownersByLicence.E,
+          },
+          {
+            label: "None: ",
+            value: ownersByLicence.NONE,
           },
         ]}
       />
