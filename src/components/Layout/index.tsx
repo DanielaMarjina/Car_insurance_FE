@@ -21,6 +21,11 @@ export const Layout = ({
       testId: 'owners',
     },
     {
+    label: 'Dashboard',
+    href: ROUTE_PATHS.DASHBOARD,
+    testId: 'dashboard',
+  },
+    {
       label: 'Cars',
       href: ROUTE_PATHS.CARS,
       testId: 'cars',
@@ -31,9 +36,11 @@ export const Layout = ({
       testId: 'about',
     },
   ];
-  const activeItem = pathname.startsWith('/cars')
+  const activeItem = pathname.startsWith('/dashboard')
+  ? ROUTE_PATHS.DASHBOARD
+  : pathname.startsWith('/cars')
     ? ROUTE_PATHS.CARS
-    : pathname.startsWith('/owners') || pathname === ROUTE_PATHS.OWNERS
+    : pathname.startsWith('/owners')
       ? ROUTE_PATHS.OWNERS
       : navItems.find((item) => item.href === pathname)?.href;
 

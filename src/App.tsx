@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Routes, Route } from "react-router-dom";
 import { ThemeProvider } from "styled-components";
-
+import Dashboard from "./pages/Dashboard";
 import { Layout } from "./components/Layout";
 import { Owners } from "./pages/Owners";
 import { OwnerDetails } from "./pages/OwnerDetails";
@@ -55,6 +55,7 @@ function App() {
             element={<CarDetails />}
           />
           <Route path={ROUTE_PATHS.ABOUT} element={<About />} />
+          <Route path={ROUTE_PATHS.DASHBOARD} element={<Dashboard />} />
         </Routes>
       </Layout>
     </ThemeProvider>

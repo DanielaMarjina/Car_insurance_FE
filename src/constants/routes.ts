@@ -7,6 +7,7 @@ export const ROUTE_PATHS = {
   ADD_CAR: '/cars/add',
   VIEW_CAR: '/cars/:carId/view',
   ABOUT: '/about',
+  DASHBOARD: "/dashboard",
 } as const;
 
 export const ROUTES = {
