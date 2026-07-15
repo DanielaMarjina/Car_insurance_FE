@@ -49,7 +49,8 @@ import {
   getHistoryTableRows,
   getSaveCarPayload,
 } from './utils';
-import { getOwners } from '../../api/owners/getOwners';
+import { useOwnersOptions } from './hooks/useOwnersOptions';
+
 
 
 /**
@@ -87,10 +88,12 @@ export const CarDetails = () => {
     validate: validateClaimForm,
     values: claimFormValues,
   } = useClaimForm();
+
+  const {ownerOptions}=useOwnersOptions(ownerId,isViewMode);
   const [categoryOptions, setCategoryOptions] = useState<
     SelectOption[]
   >([EMPTY_CATEGORY_OPTION]);
-  const [ownerOptions, setOwnerOptions] = useState<SelectOption[]>([]);
+  
   const [isLoadingCategories, setIsLoadingCategories] =
     useState(!isViewMode);
   const [isLoadingData, setIsLoadingData] = useState(isViewMode);
@@ -182,43 +185,7 @@ export const CarDetails = () => {
     };
   }, [isViewMode]);
 
-  useEffect(() => {
-  if (isViewMode) {
-    return;
-  }
-
-  let isCurrentRequest = true;
-
-  const fetchOwners = async () => {
-    try {
-      const response = await getOwners();
-
-      if (!isCurrentRequest) {
-        return;
-      }
-
-      setOwnerOptions(
-  response.items.map((owner) => ({
-    value: owner.id,
-    label: owner.name,
-  }))
-);
-    } catch (error) {
-      console.error(error);
-
-      if (isCurrentRequest) {
-        setOwnerOptions([]);
-      }
-    }
-  };
-
-  fetchOwners();
-
-  return () => {
-    isCurrentRequest = false;
-  };
-}, [isViewMode]);
-
+  
   useEffect(() => {
     if (!isViewMode || !carId) {
       return;
@@ -628,6 +595,7 @@ export const CarDetails = () => {
             errors={errors}
             categoryFieldOptions={categoryFieldOptions}
             isViewMode={isViewMode}
+            ownerId={ownerId}
             isSubmissionInProgress={isSubmissionInProgress}
             isLoadingCategories={isLoadingCategories}
             isCreatingCar={

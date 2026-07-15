@@ -1,26 +1,37 @@
 import type { SummaryCardProps } from "./SummaryCard.types";
 
+import {
+  Card,
+  Header,
+  Title,
+  List,
+  Row,
+  Label,
+  Value,
+  IconWrapper,
+} from "./SummaryCard.styles";
+
 export const SummaryCard = ({
   title,
   icon,
   items,
-  link,
 }: SummaryCardProps) => {
   return (
-    <div>
-      {icon}
+    <Card>
+      <Header>
+        <Title>{title}</Title>
 
-      <h3>{title}</h3>
+        {icon && <IconWrapper>{icon}</IconWrapper>}
+      </Header>
 
-      {items.map((item) => (
-        <div key={item.label}>
-          <span>{item.label}</span>
-
-          <span>{item.value}</span>
-        </div>
-      ))}
-
-      {link && <a href={link}>View</a>}
-    </div>
+      <List>
+        {items.map((item) => (
+          <Row key={item.label}>
+            <Label>{item.label}</Label>
+            <Value>{item.value}</Value>
+          </Row>
+        ))}
+      </List>
+    </Card>
   );
 };
