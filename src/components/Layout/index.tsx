@@ -16,15 +16,15 @@ export const Layout = ({
     themeMode === 'dark' ? 'Light mode' : 'Dark mode';
   const navItems = [
     {
-      label: 'Owners',
-      href: ROUTE_PATHS.OWNERS,
-      testId: 'owners',
-    },
-    {
     label: 'Dashboard',
     href: ROUTE_PATHS.DASHBOARD,
     testId: 'dashboard',
   },
+    {
+      label: 'Owners',
+      href: ROUTE_PATHS.OWNERS,
+      testId: 'owners',
+    },
     {
       label: 'Cars',
       href: ROUTE_PATHS.CARS,
