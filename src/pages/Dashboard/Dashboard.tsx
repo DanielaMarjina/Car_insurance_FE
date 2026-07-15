@@ -1,8 +1,11 @@
 import { StatisticCard, SummaryCard } from "../../components/Dashboard";
 import {
+  Container,
   StatisticsGrid,
   SummaryGrid,
-} from "../../components/Dashboard/Dashboard.styles";
+  Subtitle,
+  Title,
+} from "./Dashboard.styles";
 
 import { useDashboard } from "./hooks/useDashboard";
 
@@ -15,17 +18,25 @@ const Dashboard = () => {
   }
 
   return (
-    <>
-      <h1>Dashboard</h1>
+    <Container>
+      <Title>Dashboard</Title>
+
+      <Subtitle>Overview of your car insurance application</Subtitle>
       <StatisticsGrid>
-        <StatisticCard title="Total Owners" value={ownersCount} />
+        <StatisticCard
+          title="Total Owners"
+          value={ownersCount}
+          icon={undefined}
+        />
 
-        <StatisticCard title="Total Cars" value={carsCount} />
+        <StatisticCard title="Total Cars" value={carsCount} icon={undefined} />
 
-        <StatisticCard title="Insured Cars" value="--" />
+        <StatisticCard title="Insured Cars" value="--" icon={undefined} />
 
-        <StatisticCard title="Uninsured Cars" value="--" />
-
+        <StatisticCard title="Uninsured Cars" value="--" icon={undefined} />
+      </StatisticsGrid>
+      <></>
+      <SummaryGrid>
         <SummaryCard
           title="Cars by Category"
           items={[
@@ -55,9 +66,7 @@ const Dashboard = () => {
             },
           ]}
         />
-      </StatisticsGrid>
 
-      <SummaryGrid>
         <SummaryCard
           title="Owners by Driver's Licence Category"
           items={[
@@ -88,7 +97,7 @@ const Dashboard = () => {
           ]}
         />
       </SummaryGrid>
-    </>
+    </Container>
   );
 };
 

@@ -20,8 +20,11 @@ export const StatisticsGrid = styled.div`
 
 export const SummaryGrid = styled.div`
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 20px;
+  grid-template-columns: repeat(2, minmax(400px, 1fr));
+  gap: 24px;
+
+  justify-content: center;
+  align-items: stretch;
 `;
 
 export const Section = styled.div`

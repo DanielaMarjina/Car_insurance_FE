@@ -1,36 +1,29 @@
 import type { StatisticCardProps } from "./StatisticCard.types";
 
 import {
-    Card,
-    Header,
-    IconWrapper,
-    Title,
-    Value,
+  Card,
+  Header,
+  IconContainer,
+  Title,
+  Value,
+  Text,
+  Footer,
 } from "./StatisticCard.styles";
 
-export const StatisticCard = ({
-    title,
-    value,
-    icon,
-}: StatisticCardProps) => {
+export const StatisticCard = ({ title, value, icon, linkLabel }: StatisticCardProps) => {
+  return (
+    <Card>
+      <Header>
+        <IconContainer>{icon}</IconContainer>
 
-    return (
+        <Text>
+          <Title>{title}</Title>
 
-        <Card>
+          <Value>{value}</Value>
+        </Text>
+      </Header>
 
-            <Header>
-
-                <Title>{title}</Title>
-
-                <IconWrapper>
-                    {icon}
-                </IconWrapper>
-
-            </Header>
-
-            <Value>{value}</Value>
-
-        </Card>
-
-    );
+      {linkLabel && <Footer>{linkLabel} →</Footer>}
+    </Card>
+  );
 };

@@ -40,7 +40,7 @@ export const useOwnersOptions = (ownerId: string, isViewMode:boolean) => {
       return () => {
         isCurrentRequest = false;
       };
-    }, [isViewMode]);
+    }, [isViewMode, ownerId]);
     
     return { ownerOptions}
 }
